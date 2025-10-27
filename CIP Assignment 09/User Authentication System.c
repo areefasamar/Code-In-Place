@@ -8,7 +8,9 @@ int main(void)
 	int choice, users=3, length;
 	char email[50];
 	char password[50];
-	int i;
+	int i, signin = 1;  
+
+	do {
 	
 	printf("\n====== Welcome to the Login System =======\n");
 	printf("\n01. Sign In");
@@ -27,23 +29,28 @@ int main(void)
 			{
 					if ( strcmp( emails[i], email) == 0 )
 					{
-						        printf("\nEnter Password: ");
-			                    scanf("%s",password);
+						printf("\nEnter Password: ");
+			            scanf("%s",password);
 			                     
-								if ( strcmp ( passwords[i], password) == 0)
-								{
-									printf("\nSign In Successful");
-									return 0;
-								}
-								else
-								{
-									printf("\nInvalid Password");
-									return 0;
-								}			
+							if ( strcmp ( passwords[i], password) == 0)
+							{
+								printf("\nSign In Successful\n");
+								signin = 0;  
+								break;
+							}
+							else
+							{
+									printf("\nInvalid Password\n");
+									signin = 1;
+									break;
+							}			
 					}
 			}
 			
-			printf("\nInvalid Email");
+			if (i == users)
+			{
+			   printf("\nInvalid Email\n");
+		    }
 			
 		break;
 			
@@ -52,8 +59,9 @@ int main(void)
 			
 			if ( users >= 5)
 			{
-				printf("\nUser Limit Reached, cannot register more users.");
-				return 0;
+				printf("\nUser Limit Reached, cannot register more users.\n");
+				signin = 0;   
+				break;
 			}
 			
 			printf("\nEnter Your Email: ");
@@ -63,19 +71,22 @@ int main(void)
 			{
 				if ( strcmp ( emails[i],email ) == 0)
 				{
-					printf("\nEmail already exists");
-					return 0;
+					printf("\nEmail already exists\n");
+					signin = 1;
+					break;
 				}
 				
 			}
+			if (i != users) break;  // ✅ stop duplicate email from proceeding
 			
 			printf("\nEnter Your Password: ");
 			scanf("%s",password);
 			
 			if ( strlen ( password ) < 8 )
 			{
-				printf("\nInvalid Password, Password should consist of atleast 8 characters");
-				return 0;
+				printf("\nInvalid Password, Password should consist of atleast 8 characters\n");
+				signin = 1;
+				break;
 			}
 			
 			int digit=0;
@@ -96,23 +107,27 @@ int main(void)
 			
 			if ( digit!=1 || alphabet!=1 )
 			{
-				printf("\nPassword should be Alphanumeric");
-				return 0;
+				printf("\nPassword should be Alphanumeric\n");
+				signin = 1;
+				break;
 			}
 			
 			strcpy ( emails[users], email);
 			strcpy ( passwords[users], password);
 			users++;
 			
-			printf("\n Account Created Successfully, Please Sign In now");
+			printf("\nAccount Created Successfully! Enter 1 to Sign In now: ");
+			scanf("%d",&signin);
 			 
 			
 		break;	
 		
 		default: 
-		printf("\nInvalid Choice!");
+		printf("\nInvalid Choice!\n");
 		break;
 	}
+	
+    } while (signin);   
 	
 	return 0;
 }
