@@ -41,7 +41,7 @@ int main(void)
 							else
 							{
 									printf("\nInvalid Password\n");
-									signin = 1;
+									signin = 0;
 									break;
 							}			
 					}
@@ -72,12 +72,12 @@ int main(void)
 				if ( strcmp ( emails[i],email ) == 0)
 				{
 					printf("\nEmail already exists\n");
-					signin = 1;
+					signin = 0;
 					break;
 				}
 				
 			}
-			if (i != users) break;  // ✅ stop duplicate email from proceeding
+			if (i != users) break; 
 			
 			printf("\nEnter Your Password: ");
 			scanf("%s",password);
@@ -85,7 +85,7 @@ int main(void)
 			if ( strlen ( password ) < 8 )
 			{
 				printf("\nInvalid Password, Password should consist of atleast 8 characters\n");
-				signin = 1;
+				signin = 0;
 				break;
 			}
 			
@@ -108,7 +108,7 @@ int main(void)
 			if ( digit!=1 || alphabet!=1 )
 			{
 				printf("\nPassword should be Alphanumeric\n");
-				signin = 1;
+				signin = 0;
 				break;
 			}
 			
