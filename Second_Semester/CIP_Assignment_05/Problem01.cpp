@@ -10,10 +10,10 @@ class Person{
 
 class Student : public Person{
     private:
-        int rollno;
+        string rollno;
 
     public:
-        Student(string n, int r) : Person(n), rollno(r) {}
+        Student(string n, string r) : Person(n), rollno(r) {}
 
         void Display(){
             cout << "Name: " << name << endl;
@@ -22,7 +22,7 @@ class Student : public Person{
 };
 
 int main(){
-    Student s1("Areefa", 25062);
+    Student s1("Areefa", "CT-25062");
     s1.Display();
     return 0;
 }
